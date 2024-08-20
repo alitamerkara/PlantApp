@@ -12,3 +12,9 @@ export interface OnboardingType {
   id: number;
   image: any;
 }
+
+export interface FeatureType {
+  image: any;
+  title: string;
+  subTitle: string;
+}
