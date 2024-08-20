@@ -34,7 +34,10 @@ const OnboardingItem = ({ item, onPress }: OnboardingItemProps) => {
       </View>
       {item.id !== 3 && (
         <View style={styles.container}>
-          <Image source={item.image} style={styles.image} />
+          <Image
+            source={item.image}
+            style={item.id === 1 ? styles.image : styles.image2}
+          />
           {item.id === 2 && (
             <Image
               source={require("../photos/onboarding3-1.png")}
@@ -52,39 +55,46 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-    height,
+    height: height,
   },
   titleContainer: {
-    width: width * 0.7,
-    height: height * 0.08,
-    marginVertical: height * 0.06,
+    width: width * 0.81,
+    height: height * 0.081,
+    marginTop: height * 0.073,
     marginLeft: width * 0.064,
     position: "relative",
   },
   title: {
-    fontSize: width * 0.073,
+    fontSize: width * 0.08,
     fontWeight: "500",
   },
   anotherTitle: {
     fontWeight: "800",
   },
   brush: {
-    width: width * 0.3,
-    height: height * 0.05,
+    width: width * 0.362,
+    height: height * 0.016,
     position: "absolute",
-    top: height * 0.02,
-    right: "5%",
+    top: height * 0.04,
+    left: width * 0.4,
   },
   brush2: {
-    width: width * 0.37,
-    height: height * 0.05,
+    width: width * 0.405,
+    height: height * 0.016,
     position: "absolute",
-    top: height * 0.027,
-    right: "15%",
+    top: height * 0.04,
+    left: width * 0.3,
   },
   image: {
     width: width,
-    height: "60%",
+    height: height * 0.653,
+    marginBottom: -height * 0.02,
+    resizeMode: "contain",
+  },
+  image2: {
+    width: width,
+    height: height * 0.6,
+    marginTop: height * 0.05,
     marginBottom: -height * 0.02,
     resizeMode: "contain",
     position: "relative",
@@ -93,8 +103,8 @@ const styles = StyleSheet.create({
     height: "20%",
     width: "40%",
     position: "absolute",
-    top: "-7%",
-    right: "10%",
+    right: 0,
   },
 });
+
 export default OnboardingItem;

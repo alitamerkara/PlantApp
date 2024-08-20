@@ -2,7 +2,6 @@ import React from "react";
 import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 Onboard;
 import HomePage from "./pages/HomePage";
 import Onboard from "./pages/Onboard";
@@ -32,6 +31,5 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: "red",
   },
 });
