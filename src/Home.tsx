@@ -3,8 +3,9 @@ import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import HomePage from "./HomePage";
-import Onboard from "./Onboard";
+Onboard;
+import HomePage from "./pages/HomePage";
+import Onboard from "./pages/Onboard";
 const Stack = createNativeStackNavigator();
 
 export default function Home() {
