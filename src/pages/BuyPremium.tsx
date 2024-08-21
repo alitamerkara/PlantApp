@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     height: height * 0.33,
     position: "relative",
     marginLeft: 10,
+    gap: 10,
   },
   year: {
     width: 327,

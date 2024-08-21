@@ -8,9 +8,8 @@ import {
   Dimensions,
   Pressable,
   FlatList,
-  Image,
+  ScrollView,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { features } from "../components/constants";
 import Feature from "./Feature";
@@ -20,11 +19,6 @@ import { useDispatch } from "react-redux";
 import { setOnboard } from "../store/reducers/slices";
 
 const { width, height } = Dimensions.get("screen");
-
-const FeaturesList = ({ item }: { item: FeatureType }) => {
-  return <Feature item={item} />;
-};
-
 const Paywall = ({ navigation }: PageProps) => {
   const dispatch = useDispatch();
 
@@ -33,69 +27,60 @@ const Paywall = ({ navigation }: PageProps) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" />
+    <View style={styles.all}>
       <ImageBackground
         source={require("../photos/paywall.png")}
         style={styles.backgroundImage}
       >
+        <StatusBar barStyle="light-content" />
         <Pressable style={styles.closeButton} onPress={closeOffer}>
           <AntDesign name="closecircleo" size={24} color="white" />
         </Pressable>
-        <View style={styles.design}>
-          <View style={styles.content}>
-            <Text style={styles.title}>
-              PlantApp <Text style={styles.anotherTitle}>Premium</Text>
-            </Text>
-            <Text style={styles.subTitle}>Access All Features</Text>
-          </View>
-          <FlatList
-            data={features}
-            renderItem={FeaturesList}
-            horizontal
-            pagingEnabled
-            bounces={false}
-            style={styles.flatList}
-          />
-          <View style={styles.buyPremium}>
-            <BuyPremium />
-          </View>
+        <View style={styles.content}>
+          <Text style={styles.title}>
+            PlantApp <Text style={styles.anotherTitle}>Premium</Text>
+          </Text>
+          <Text style={styles.subTitle}>Access All Features</Text>
         </View>
       </ImageBackground>
-    </SafeAreaView>
+      <View style={styles.scroll}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          bounces={false}
+        >
+          {features.map((item) => {
+            return <Feature item={item} />;
+          })}
+        </ScrollView>
+
+        <BuyPremium />
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#101E17",
-    width,
-    height,
+  backgroundImage: {
+    width: "100%",
+    height: 350,
+    resizeMode: "cover",
     position: "relative",
   },
-  backgroundImage: {
+  all: {
+    height,
     width,
-    height: height * 0.65,
-    resizeMode: "cover",
-    justifyContent: "center",
-    position: "absolute",
-    top: 0,
-  },
-  design: {
-    height: 514,
-    width: 351,
+    backgroundColor: "#101E17",
   },
   content: {
-    flex: 1,
-    width: width * 0.93,
-    height: height * 0.63,
+    width: 327,
+    height: 71,
+    left: 24,
     position: "absolute",
-    top: height * 0.38,
-    left: width * 0.064,
+    top: 280,
   },
   title: {
-    fontSize: width * 0.1,
+    fontSize: 30,
     color: "#FFFFFF",
     fontWeight: "800",
   },
@@ -105,8 +90,8 @@ const styles = StyleSheet.create({
   subTitle: {
     fontWeight: "300",
     color: "#FFFFFFB2",
-    fontSize: width * 0.05,
-    marginTop: height * 0.006,
+    fontSize: 17,
+    marginTop: 10,
   },
   closeButton: {
     position: "absolute",
@@ -115,13 +100,12 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   flatList: {
-    width: width,
+    width: 250,
+    height: 80,
     flexDirection: "row",
-    top: height * 0.48,
-    marginBottom: 15,
   },
-  buyPremium: {
-    top: 400,
+  scroll: {
+    gap: 20,
   },
 });
 
