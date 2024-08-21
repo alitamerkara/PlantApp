@@ -24,7 +24,9 @@ const FeaturesList = ({ item }: { item: FeatureType }) => {
 
 const Paywall = ({ navigation }: PageProps) => {
   const closeOffer = () => {
-    navigation.navigate("HomePage");
+    navigation.navigate("AppStack", {
+      screen: "Home",
+    });
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -46,7 +48,7 @@ const Paywall = ({ navigation }: PageProps) => {
           <FlatList
             data={features}
             renderItem={FeaturesList}
-            keyExtractor={(item) => item.id}
+            // keyExtractor={(item) => item.id}
             horizontal
             showsHorizontalScrollIndicator={false}
             pagingEnabled
@@ -107,7 +109,7 @@ const styles = StyleSheet.create({
   closeButton: {
     position: "absolute",
     top: 55,
-    left: 335,
+    left: 325,
     padding: 20,
   },
   flatList: {
