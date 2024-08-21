@@ -16,11 +16,11 @@ const Feature = ({ item }: { item: FeatureType }) => {
 };
 const styles = StyleSheet.create({
   container: {
-    width: width * 0.41,
+    width: width * 0.45,
     height: height * 0.16,
     backgroundColor: "#FFFFFF14",
     borderRadius: 14,
-    marginLeft: 10,
+    marginLeft: 5,
     paddingTop: 15,
     paddingLeft: 10,
   },

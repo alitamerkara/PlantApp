@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
-import { offers } from "../components/slides";
+import { offers } from "../components/constants";
 import PrimaryButton from "../components/PrimaryButton";
 
 const { width, height } = Dimensions.get("screen");

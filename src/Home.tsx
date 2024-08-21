@@ -2,24 +2,24 @@ import React from "react";
 import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-Onboard;
+import Onboarding from "./pages/Onboarding";
 import HomePage from "./pages/HomePage";
-import Onboard from "./pages/Onboard";
 const Stack = createNativeStackNavigator();
-
 export default function Home() {
   return (
-    <View style={{ borderWidth: 1, flex: 1 }}>
+    <View style={styles.container}>
       <NavigationContainer independent={true}>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Onboarding"
+            component={Onboarding}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
         <Stack.Navigator>
           <Stack.Screen
             name="HomePage"
             component={HomePage}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Onboard"
-            component={Onboard}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

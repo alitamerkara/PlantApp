@@ -4,10 +4,15 @@ const slides: OnboardingType[] = [
   {
     id: 1,
     image: require("../photos/onboarding1.png"),
+    title: "Take a photo to",
+    bold: "identify",
+    title2: "the plant",
   },
   {
     id: 2,
     image: require("../photos/onboarding3.png"),
+    title: "Get plant",
+    bold: "care guides",
   },
   {
     id: 3,

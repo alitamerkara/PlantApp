@@ -16,8 +16,8 @@ const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
   buttonContainer: {
     backgroundColor: "#28AF6E",
-    width: width * 0.87,
-    height: height * 0.068,
+    width: 327,
+    height: 52,
     borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
-    fontSize: 15,
+    fontSize: 20,
     fontWeight: "700",
   },
 });

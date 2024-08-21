@@ -11,6 +11,9 @@ export type PageProps = NativeStackScreenProps<RootStackParamList, "HomePage">;
 export interface OnboardingType {
   id: number;
   image: any;
+  title?: string;
+  bold?: string;
+  title2?: string;
 }
 
 export interface FeatureType {
