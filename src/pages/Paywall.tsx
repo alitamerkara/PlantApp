@@ -16,18 +16,22 @@ import { features } from "../components/constants";
 import Feature from "./Feature";
 import { FeatureType, PageProps } from "../components/types";
 import BuyPremium from "./BuyPremium";
+import { useDispatch } from "react-redux";
+import { setOnboard } from "../store/reducers/slices";
 
 const { width, height } = Dimensions.get("screen");
+
 const FeaturesList = ({ item }: { item: FeatureType }) => {
   return <Feature item={item} />;
 };
 
 const Paywall = ({ navigation }: PageProps) => {
+  const dispatch = useDispatch();
+
   const closeOffer = () => {
-    navigation.navigate("AppStack", {
-      screen: "Home",
-    });
+    dispatch(setOnboard(false));
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" />

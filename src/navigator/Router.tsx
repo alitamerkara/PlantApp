@@ -13,7 +13,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Feather from "@expo/vector-icons/Feather";
-
+import { useSelector } from "react-redux";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -53,11 +53,7 @@ const AppStack = () => (
         } else if (route.name === "Scanner") {
           return (
             <View style={styles.scanner}>
-              <MaterialIcons
-                name="document-scanner"
-                size={25}
-                color={focused ? "#BDBDBD" : "white"}
-              />
+              <MaterialIcons name="document-scanner" size={25} color="white" />
             </View>
           );
         } else if (route.name === "MyGarden") {
@@ -93,7 +89,7 @@ const AppStack = () => (
     <Tab.Screen
       name="Scanner"
       component={Scanner}
-      options={{ headerShown: false }}
+      options={{ headerShown: false, tabBarLabel: () => null }}
     />
     <Tab.Screen
       name="MyGarden"
@@ -109,19 +105,23 @@ const AppStack = () => (
 );
 
 export default function Router() {
+  const onboard = useSelector((state: any) => state.slicer.onboard);
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator>
-        <Stack.Screen
-          name="OnboardingStack"
-          component={OnboardingStack}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="AppStack"
-          component={AppStack}
-          options={{ headerShown: false }}
-        />
+        {onboard ? (
+          <Stack.Screen
+            name="OnboardingStack"
+            component={OnboardingStack}
+            options={{ headerShown: false }}
+          />
+        ) : (
+          <Stack.Screen
+            name="AppStack"
+            component={AppStack}
+            options={{ headerShown: false }}
+          />
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     top: -20,
     borderWidth: 4,
     borderColor: "#FFFFFF3D",
-    borderRadius: "50%",
+    borderRadius: 60,
     width: 60,
     height: 60,
     alignItems: "center",
