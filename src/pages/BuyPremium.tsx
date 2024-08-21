@@ -1,15 +1,26 @@
 import React from "react";
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import { View, Text, StyleSheet, Dimensions, Pressable } from "react-native";
 import { offers } from "../components/constants";
 import PrimaryButton from "../components/PrimaryButton";
+import { useDispatch } from "react-redux";
+import { setOnboard } from "../store/reducers/slices";
 
 const { width, height } = Dimensions.get("screen");
 const BuyPremium = () => {
-  const handlePress = () => {};
+  const dispatch = useDispatch();
+  const handlePress = () => {
+    dispatch(setOnboard(false));
+  };
   return (
     <View style={styles.container}>
       {offers.map((item, index) => (
-        <View style={item.id == 2 ? styles.year : styles.month} key={index}>
+        <Pressable
+          style={({ pressed }) => [
+            item.id == 2 ? styles.year : styles.month,
+            pressed ? styles.buttonPressed : null,
+          ]}
+          key={index}
+        >
           {item.id == 2 && (
             <View style={styles.topTitleContainer}>
               <Text style={styles.topTitle}>Save 50%</Text>
@@ -17,7 +28,7 @@ const BuyPremium = () => {
           )}
           <Text style={styles.title}>{item.title}</Text>
           <Text style={styles.subTitle}>{item.subTitle}</Text>
-        </View>
+        </Pressable>
       ))}
       <PrimaryButton onPress={handlePress}>Try free for 3 days</PrimaryButton>
       <View style={styles.termsContainer}>
@@ -36,6 +47,7 @@ const styles = StyleSheet.create({
     width: width * 0.87,
     height: height * 0.33,
     position: "relative",
+    marginLeft: 10,
   },
   year: {
     width: 327,
@@ -55,12 +67,14 @@ const styles = StyleSheet.create({
     left: 24,
     top: 10,
     borderRadius: 14,
-    backgroundColor: "#FFFFFF4D",
     borderWidth: 1.5,
     borderColor: "#FFFFFF4D",
     justifyContent: "center",
     padding: 20,
     marginBottom: 10,
+  },
+  buttonPressed: {
+    opacity: 0.6,
   },
   title: {
     fontSize: 16,
@@ -98,6 +112,7 @@ const styles = StyleSheet.create({
     fontSize: 9,
     color: "#FFFFFF85",
     textAlign: "center",
+    width: 300,
   },
   legal: {
     fontSize: 11,

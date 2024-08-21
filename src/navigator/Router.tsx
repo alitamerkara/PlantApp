@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomePage from "../pages/HomePage";
+import HomePage from "../pages/HompagesTabs/HomePage";
 import Onboarding from "../pages/Onboarding";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Diagnose from "../pages/HompagesTabs/Diagnose";

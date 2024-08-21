@@ -52,9 +52,7 @@ const Paywall = ({ navigation }: PageProps) => {
           <FlatList
             data={features}
             renderItem={FeaturesList}
-            // keyExtractor={(item) => item.id}
             horizontal
-            showsHorizontalScrollIndicator={false}
             pagingEnabled
             bounces={false}
             style={styles.flatList}
