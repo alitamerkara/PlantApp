@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
     marginLeft: wp("2.6%"),
     paddingTop: hp("1.8%"),
     paddingLeft: wp("2.6%"),
-    marginLeft: wp("6.4%"),
   },
   imageContainer: {
     width: wp("11%"),

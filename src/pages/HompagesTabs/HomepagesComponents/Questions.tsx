@@ -5,6 +5,7 @@ import {
   FlatList,
   ImageBackground,
   StyleSheet,
+  Pressable,
 } from "react-native";
 import {
   widthPercentageToDP as wp,
@@ -14,11 +15,13 @@ import {
 const renderItem = ({ item }) => {
   const image = { uri: item.image_uri };
   return (
-    <ImageBackground source={image} style={styles.image}>
-      <View style={styles.renderContainer}>
-        <Text style={styles.text}>{item.title}</Text>
-      </View>
-    </ImageBackground>
+    <Pressable style={({ pressed }) => [pressed ? styles.buttonPressed : null]}>
+      <ImageBackground source={image} style={styles.image}>
+        <View style={styles.renderContainer}>
+          <Text style={styles.text}>{item.title}</Text>
+        </View>
+      </ImageBackground>
+    </Pressable>
   );
 };
 
@@ -80,6 +83,9 @@ const styles = StyleSheet.create({
   flatList: {
     width: wp("98.7%"),
     height: hp("24.6%"),
+  },
+  buttonPressed: {
+    opacity: 0.6,
   },
 });
 export default Questions;

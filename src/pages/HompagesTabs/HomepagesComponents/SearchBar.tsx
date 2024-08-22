@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
   input: {
     paddingLeft: 8,
     fontSize: 15,
+    width: "90%",
   },
 });
 export default SearchBar;

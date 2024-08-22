@@ -5,7 +5,7 @@ import {
   FlatList,
   ImageBackground,
   StyleSheet,
-  ScrollView,
+  Pressable,
 } from "react-native";
 import PremiumBox from "./PremiumBox";
 import Questions from "./Questions";
@@ -17,20 +17,21 @@ import {
 const renderItem = ({ item }) => {
   const image = { uri: item.image.url };
   return (
-    <View style={styles.renderContainer}>
+    <Pressable
+      style={({ pressed }) => [
+        styles.renderContainer,
+        pressed ? styles.buttonPressed : null,
+      ]}
+    >
       <ImageBackground source={image} style={styles.image}>
         <Text style={styles.text}>{item.title}</Text>
       </ImageBackground>
-    </View>
+    </Pressable>
   );
 };
 
 const Categories = () => {
-  const [datas, setDatas] = useState({
-    data: [],
-    loading: true,
-    error: false,
-  });
+  const [datas, setDatas] = useState([]);
   useLayoutEffect(() => {
     const fetchData = async () => {
       await fetch("https://dummy-api-jtg6bessta-ey.a.run.app/getCategories")
@@ -81,15 +82,22 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     marginHorizontal: wp("1.3%"),
+    width: "100%",
+    height: "100%",
   },
   text: {
     fontSize: wp("4.1%"),
     color: "#13231B",
-    width: wp("17.9%"),
+    width: wp("20.6%"),
     fontWeight: "500",
+    lineHeight: hp("2.5%"),
+    margin: 16,
   },
   flatList: {
     marginLeft: wp("6.2%"),
+  },
+  buttonPressed: {
+    opacity: 0.6,
   },
 });
 export default Categories;
