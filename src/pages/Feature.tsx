@@ -1,6 +1,10 @@
 import React from "react";
 import { View, Image, Text, StyleSheet, Dimensions } from "react-native";
 import { FeatureType } from "../components/types";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const { width, height } = Dimensions.get("screen");
 const Feature = ({ item }: { item: FeatureType }) => {
@@ -16,35 +20,36 @@ const Feature = ({ item }: { item: FeatureType }) => {
 };
 const styles = StyleSheet.create({
   container: {
-    width: 156,
-    height: 130,
+    width: wp("40.0%"),
+    height: hp("15.4%"),
     backgroundColor: "#FFFFFF14",
-    borderRadius: 14,
-    marginLeft: 5,
-    paddingTop: 15,
-    paddingLeft: 10,
+    borderRadius: wp("3.7%"),
+    marginLeft: wp("2.6%"),
+    paddingTop: hp("1.8%"),
+    paddingLeft: wp("2.6%"),
+    marginLeft: wp("6.4%"),
   },
   imageContainer: {
-    width: "28%",
+    width: wp("11%"),
     backgroundColor: "#1b2420",
-    padding: 8,
-    borderRadius: 10,
-    marginBottom: 12,
+    padding: wp("2.1%"),
+    borderRadius: wp("2.6%"),
+    marginBottom: hp("1.4%"),
   },
   image: {
-    width: 24,
-    height: 24,
+    width: wp("6.2%"),
+    height: wp("6.2%"),
   },
   text: {
     color: "#FFFFFF",
     fontWeight: "500",
-    fontSize: width * 0.053,
-    marginBottom: 6,
+    fontSize: wp("5.3%"),
+    marginBottom: hp("0.7%"),
   },
   subText: {
     color: "#FFFFFFB2",
     fontWeight: "400",
-    fontSize: width * 0.034,
+    fontSize: wp("3.4%"),
   },
 });
 export default Feature;

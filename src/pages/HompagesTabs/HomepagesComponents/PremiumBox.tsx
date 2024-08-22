@@ -2,6 +2,10 @@ import React from "react";
 import { Text, View, StyleSheet, Pressable } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const PremiumBox = () => {
   return (
@@ -34,51 +38,50 @@ const PremiumBox = () => {
 };
 const styles = StyleSheet.create({
   premiumBox: {
-    width: 327,
-    height: 64,
-    marginLeft: 24,
+    width: wp("87.2%"),
+    height: hp("7.9%"),
     backgroundColor: "#24201A",
-    borderRadius: 12,
-    marginTop: 20,
+    borderRadius: wp("3.2%"),
+    marginTop: hp("2.5%"),
     alignItems: "center",
     justifyContent: "space-around",
     flexDirection: "row",
-    padding: 20,
-    marginBottom: 20,
+    paddingHorizontal: wp("5.3%"),
+    marginBottom: hp("2.5%"),
   },
   message: {
-    left: 20,
+    left: wp("5.3%"),
   },
   number: {
     position: "absolute",
     backgroundColor: "red",
-    padding: 4,
-    width: 14,
-    borderRadius: 14,
+    padding: wp("1.1%"),
+    width: wp("3.7%"),
+    borderRadius: wp("3.7%"),
     top: 0,
-    left: 36,
+    left: wp("9.6%"),
   },
   numberContent: {
     color: "white",
-    fontSize: 8,
+    fontSize: wp("2.1%"),
     fontWeight: "bold",
   },
   textContent: {
-    width: 228,
-    height: 38,
-    marginLeft: 72,
+    width: wp("60.8%"),
+    height: hp("4.7%"),
+    marginLeft: wp("19.2%"),
   },
   title: {
-    fontSize: 16,
+    fontSize: wp("4.3%"),
     fontWeight: "600",
     color: "#E5C990",
-    marginTop: 5,
+    marginTop: hp("0.6%"),
   },
   boldTitle: {
     fontWeight: "700",
   },
   subTitle: {
-    fontSize: 13,
+    fontSize: wp("3.5%"),
     fontWeight: "400",
     color: "#FFDE9CCC",
   },

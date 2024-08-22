@@ -17,6 +17,10 @@ import { FeatureType, PageProps } from "../components/types";
 import BuyPremium from "./BuyPremium";
 import { useDispatch } from "react-redux";
 import { setOnboard } from "../store/reducers/slices";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const { width, height } = Dimensions.get("screen");
 const Paywall = ({ navigation }: PageProps) => {
@@ -49,8 +53,8 @@ const Paywall = ({ navigation }: PageProps) => {
           showsHorizontalScrollIndicator={false}
           bounces={false}
         >
-          {features.map((item) => {
-            return <Feature item={item} />;
+          {features.map((item, index) => {
+            return <Feature key={index} item={item} />;
           })}
         </ScrollView>
 
@@ -62,25 +66,25 @@ const Paywall = ({ navigation }: PageProps) => {
 
 const styles = StyleSheet.create({
   backgroundImage: {
-    width: "100%",
-    height: 350,
+    width: wp("100%"),
+    height: hp("41.5%"),
     resizeMode: "cover",
     position: "relative",
   },
   all: {
-    height,
-    width,
+    height: hp("100%"),
+    width: wp("100%"),
     backgroundColor: "#101E17",
   },
   content: {
-    width: 327,
-    height: 71,
-    left: 24,
+    width: wp("87.8%"),
+    height: hp("8.4%"),
+    left: wp("6.4%"),
     position: "absolute",
-    top: 280,
+    top: hp("33.2%"),
   },
   title: {
-    fontSize: 30,
+    fontSize: wp("7.7%"),
     color: "#FFFFFF",
     fontWeight: "800",
   },
@@ -90,22 +94,22 @@ const styles = StyleSheet.create({
   subTitle: {
     fontWeight: "300",
     color: "#FFFFFFB2",
-    fontSize: 17,
-    marginTop: 10,
+    fontSize: wp("4.4%"),
+    marginTop: hp("1.2%"),
   },
   closeButton: {
     position: "absolute",
-    top: 55,
-    left: 325,
-    padding: 20,
+    top: hp("6.5%"),
+    left: wp("83.3%"),
+    padding: wp("5.3%"),
   },
   flatList: {
-    width: 250,
-    height: 80,
+    width: wp("64.1%"),
+    height: hp("9.5%"),
     flexDirection: "row",
   },
   scroll: {
-    gap: 20,
+    gap: hp("2.4%"),
   },
 });
 

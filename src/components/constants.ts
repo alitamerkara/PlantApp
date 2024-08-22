@@ -5,7 +5,7 @@ const slides: OnboardingType[] = [
     id: 1,
     image: require("../photos/onboarding1.png"),
     title: "Take a photo to",
-    bold: "identify",
+    bold: "identify\n",
     title2: "the plant",
   },
   {

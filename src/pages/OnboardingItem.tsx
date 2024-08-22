@@ -5,20 +5,28 @@ import Paywall from "./Paywall";
 interface OnboardingItemProps {
   item: OnboardingType;
 }
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
-const { width, height } = Dimensions.get("screen");
 const OnboardingItem = ({ item, onPress, navigation }: OnboardingItemProps) => {
   return item.id === 3 ? (
     <Paywall navigation={navigation} />
   ) : (
     <View style={styles.container}>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>
-          {item.title}
-          <Text style={styles.anotherTitle}> {item.bold} </Text>
-          {item.title2}
-        </Text>
-        <Image style={styles.brush} source={require("../photos/brush.png")} />
+      <View style={styles.content}>
+        <Image
+          style={item.id === 1 ? styles.brush : styles.brush2}
+          source={require("../photos/brush.png")}
+        />
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>
+            {item.title}
+            <Text style={styles.boldTitle}> {item.bold} </Text>
+            {item.title2}
+          </Text>
+        </View>
       </View>
       <View style={styles.container}>
         <Image
@@ -43,43 +51,58 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   titleContainer: {
-    width: width * 0.81,
-    height: height * 0.081,
-    marginTop: height * 0.073,
-    marginLeft: width * 0.064,
+    width: wp("80%"),
+  },
+  content: {
+    width: wp("100%"),
+    height: hp("8.1%"),
+    paddingLeft: wp("6.4%"),
+    marginTop: hp("7.2%"),
     position: "relative",
+    alignItems: "center",
+    justifyContent: "center",
   },
   title: {
-    fontSize: width * 0.08,
-    fontWeight: "500",
+    fontSize: wp("7.4%"),
+    fontWeight: "600",
+    lineHeight: hp("4.06%"),
+    letterSpacing: -1,
   },
-  anotherTitle: {
-    fontWeight: "800",
+  boldTitle: {
+    fontWeight: "900",
+    lineHeight: hp("4%"),
   },
   brush: {
-    width: width * 0.405,
-    height: height * 0.026,
+    width: wp("36.2%"),
+    height: hp("2.6%"),
     position: "absolute",
-    top: height * 0.034,
-    left: width * 0.32,
+    top: hp("4.1%"),
+    left: wp("47.7%"),
+  },
+  brush2: {
+    width: wp("40.5%"),
+    height: hp("4.4%"),
+    position: "absolute",
+    top: hp("5%"),
+    left: wp("33%"),
   },
   image: {
-    width: width,
-    height: height * 0.653,
-    marginBottom: -height * 0.02,
+    width: wp("100%"),
+    height: hp("65.3%"),
+    marginBottom: -hp("2%"),
     resizeMode: "contain",
   },
   image2: {
-    width: width,
-    height: height * 0.6,
-    marginTop: height * 0.05,
-    marginBottom: -height * 0.02,
+    width: wp("100%"),
+    height: hp("60%"),
+    marginTop: hp("5%"),
+    marginBottom: -hp("2%"),
     resizeMode: "contain",
     position: "relative",
   },
   subImage: {
-    height: "20%",
-    width: "40%",
+    height: hp("20%"),
+    width: wp("40%"),
     position: "absolute",
     right: 0,
   },

@@ -1,9 +1,11 @@
 import React from "react";
 import { Text, View, StyleSheet, Pressable, ScrollView } from "react-native";
 import SearchBar from "./HomepagesComponents/SearchBar";
-import PremiumBox from "./HomepagesComponents/PremiumBox";
-import Questions from "./HomepagesComponents/Questions";
 import Categories from "./HomepagesComponents/Categories";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const HomePage = () => {
   return (
@@ -11,8 +13,6 @@ const HomePage = () => {
       <View style={styles.search}>
         <SearchBar />
       </View>
-      {/* <PremiumBox />
-        <Questions /> */}
       <Categories />
     </View>
   );
@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   search: {
-    width: "100%",
-    height: 175,
+    width: wp("100%"),
+    height: hp("21.5%"),
   },
 });
 export default HomePage;

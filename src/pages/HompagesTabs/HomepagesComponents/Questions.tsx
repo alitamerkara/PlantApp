@@ -6,6 +6,10 @@ import {
   ImageBackground,
   StyleSheet,
 } from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const renderItem = ({ item }) => {
   const image = { uri: item.image_uri };
@@ -20,6 +24,7 @@ const renderItem = ({ item }) => {
 
 const Questions = () => {
   const [datas, setDatas] = useState([]);
+
   useLayoutEffect(() => {
     const fetchData = async () => {
       await fetch("https://dummy-api-jtg6bessta-ey.a.run.app/getQuestions")
@@ -29,6 +34,7 @@ const Questions = () => {
     };
     fetchData();
   }, []);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Get Started</Text>
@@ -45,35 +51,35 @@ const Questions = () => {
 };
 const styles = StyleSheet.create({
   container: {
-    width: 494,
-    height: 200,
-    marginLeft: 24,
-    gap: 10,
+    width: wp("100%"),
+    height: hp("24.6%"),
+    gap: hp("1.2%"),
+    marginBottom: hp("4%"),
   },
   title: {
-    marginHorizontal: 6,
-    fontSize: 15,
+    marginHorizontal: wp("1.6%"),
+    fontSize: wp("4%"),
     fontWeight: "500",
   },
   renderContainer: {
-    width: 240,
-    height: 164,
+    width: wp("55%"),
+    height: hp("20.2%"),
     justifyContent: "flex-end",
-    padding: 14,
+    padding: wp("3.7%"),
   },
   image: {
     flex: 1,
-    marginHorizontal: 5,
-    borderRadius: 12,
+    marginHorizontal: wp("1.3%"),
+    borderRadius: wp("3.2%"),
     overflow: "hidden",
   },
   text: {
-    fontSize: 15,
+    fontSize: wp("4%"),
     color: "#FFFFFF",
   },
   flatList: {
-    width: 370,
-    height: 200,
+    width: wp("98.7%"),
+    height: hp("24.6%"),
   },
 });
 export default Questions;

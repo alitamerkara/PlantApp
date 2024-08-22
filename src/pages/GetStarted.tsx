@@ -1,15 +1,10 @@
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  Dimensions,
-  StatusBar,
-} from "react-native";
-import { PageProps } from "../components/types";
+import { StyleSheet, View, Text, Image, StatusBar } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
-const { width, height, fontScale } = Dimensions.get("screen");
 export default function GetStarted({ setValue }) {
   const handlerPress = () => {
     setValue((value: boolean) => !value);
@@ -20,7 +15,7 @@ export default function GetStarted({ setValue }) {
       <StatusBar barStyle="dark-content" />
       <View style={styles.titleContainer}>
         <Text style={styles.title}>
-          Welcome to <Text style={styles.anotherTitle}>PlantApp</Text>
+          Welcome to <Text style={styles.boldTitle}>PlantApp</Text>
         </Text>
         <Text style={styles.subTitle}>
           Identify more than 3000+ plants and 88% accuracy.
@@ -42,45 +37,50 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+    marginTop: hp("7%"),
   },
   titleContainer: {
-    width: width * 0.8,
-    height: height * 0.1,
-    marginTop: height * 0.07,
-    marginLeft: width * 0.06,
+    width: wp("80%"),
+    height: hp("10%"),
+    marginLeft: wp("6%"),
   },
   title: {
-    width: width * 0.76,
-    height: height * 0.04,
-    fontSize: width * 0.07,
+    width: wp("76%"),
+    height: hp("4%"),
+    fontSize: wp("7%"),
     color: "#13231B",
     fontWeight: "400",
+    lineHeight: hp("4%"),
   },
-  anotherTitle: {
+  boldTitle: {
     fontWeight: "700",
   },
   subTitle: {
-    width: width * 0.8,
-    height: height * 0.05,
-    fontSize: width * 0.04,
+    width: wp("60%"),
+    height: hp("5%"),
+    fontSize: wp("4%"),
+    paddingRight: wp("3%"),
     color: "#13231BB2",
     fontWeight: "400",
+    lineHeight: hp("2.5%"),
   },
   image: {
-    width: width,
-    height: height * 0.61,
+    width: wp("100%"),
+    height: hp("61%"),
+    marginTop: hp("2%"),
     resizeMode: "contain",
   },
   terms: {
-    width: width * 0.61,
-    height: height * 0.03,
-    marginLeft: width * 0.19,
-    marginTop: height * 0.02,
+    width: wp("61%"),
+    height: hp("3.6%"),
+    marginLeft: wp("19%"),
+    marginTop: hp("2%"),
     alignItems: "center",
   },
   termsText: {
     color: "#597165B2",
-    fontSize: width * 0.029,
+    fontSize: wp("3%"),
     textAlign: "center",
+    lineHeight: hp("1.8%"),
   },
 });

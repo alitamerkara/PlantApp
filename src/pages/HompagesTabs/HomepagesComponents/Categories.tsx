@@ -9,6 +9,10 @@ import {
 } from "react-native";
 import PremiumBox from "./PremiumBox";
 import Questions from "./Questions";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const renderItem = ({ item }) => {
   const image = { uri: item.image.url };
@@ -40,47 +44,52 @@ const Categories = () => {
   }, []);
   return (
     <View style={styles.container}>
-      <ScrollView bounces={false}>
-        <PremiumBox />
-        <Questions />
-        <FlatList
-          data={datas}
-          keyExtractor={(item) => item.id}
-          renderItem={renderItem}
-          numColumns={2}
-          showsVerticalScrollIndicator={false}
-          style={styles.flatList}
-        />
-      </ScrollView>
+      <FlatList
+        data={datas}
+        keyExtractor={(item) => item.id}
+        renderItem={renderItem}
+        numColumns={2}
+        showsVerticalScrollIndicator={false}
+        style={styles.flatList}
+        ListHeaderComponent={
+          <>
+            <PremiumBox />
+            <Questions />
+          </>
+        }
+      />
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
-    width: 494,
-    height: 600,
-    gap: 10,
+    width: wp("126.7%"),
+    height: hp("71.1%"),
+    gap: hp("1.2%"),
   },
   renderContainer: {
-    width: 158,
-    height: 152,
+    width: wp("40.5%"),
+    height: hp("18%"),
     justifyContent: "flex-end",
-    padding: 14,
-    borderRadius: 12,
+    borderRadius: wp("3.1%"),
     overflow: "hidden",
+    borderWidth: 0.5,
+    borderColor: "#29BB892E",
+    marginVertical: hp("1%"),
+    marginHorizontal: hp("0.5%"),
   },
   image: {
     flex: 1,
-    marginHorizontal: 5,
+    marginHorizontal: wp("1.3%"),
   },
   text: {
-    fontSize: 16,
+    fontSize: wp("4.1%"),
     color: "#13231B",
-    width: 70,
+    width: wp("17.9%"),
     fontWeight: "500",
   },
   flatList: {
-    marginLeft: 48,
+    marginLeft: wp("6.2%"),
   },
 });
 export default Categories;
