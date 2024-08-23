@@ -1,6 +1,7 @@
+import { StyleSheet, Text, Pressable } from "react-native";
+import { OnboardingItemProps, PrimaryButtonProps } from "./types";
+import { normalizeh, normalizew } from "../utils/normalize";
 import React from "react";
-import { StyleSheet, Text, Pressable, Dimensions } from "react-native";
-import { PrimaryButtonProps } from "./types";
 
 export default function PrimaryButton({
   children,
@@ -12,21 +13,20 @@ export default function PrimaryButton({
     </Pressable>
   );
 }
-const { width, height } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
   buttonContainer: {
     backgroundColor: "#28AF6E",
-    width: 327,
-    height: 52,
-    borderRadius: 12,
+    width: normalizew(327),
+    height: normalizeh(52),
+    borderRadius: normalizew(12),
     alignItems: "center",
     justifyContent: "center",
-    marginLeft: width * 0.064,
-    marginTop: height * 0.02,
+    marginTop: normalizeh(16),
   },
   buttonText: {
     color: "white",
-    fontSize: 20,
+    fontSize: normalizew(18),
     fontWeight: "700",
   },
 });

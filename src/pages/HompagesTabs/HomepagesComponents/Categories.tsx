@@ -6,15 +6,15 @@ import {
   ImageBackground,
   StyleSheet,
   Pressable,
+  ActivityIndicator,
 } from "react-native";
 import PremiumBox from "./PremiumBox";
 import Questions from "./Questions";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import { normalizeh, normalizew } from "../../../utils/normalize";
+import { DataType } from "../../../components/types";
+import { CATEGORIES_DATA } from "../../../components/constants";
 
-const renderItem = ({ item }) => {
+const renderItem = ({ item }: { item: DataType }) => {
   const image = { uri: item.image.url };
   return (
     <Pressable
@@ -31,23 +31,38 @@ const renderItem = ({ item }) => {
 };
 
 const Categories = () => {
-  const [datas, setDatas] = useState([]);
+  const [datas, setDatas] = useState({ data: [], error: false, loading: true });
+
   useLayoutEffect(() => {
     const fetchData = async () => {
-      await fetch("https://dummy-api-jtg6bessta-ey.a.run.app/getCategories")
+      await fetch(CATEGORIES_DATA)
         .then((res) => res.json())
         .then((data) => {
-          setDatas(data.data);
+          setDatas((prev) => ({ ...prev, data: data.data, loading: false }));
         })
-        .catch((error) => console.log("Error fetching data", error));
+        .catch((error) => setDatas((prev) => ({ ...prev, error: true })));
     };
     fetchData();
   }, []);
-  return (
-    <View style={styles.container}>
+
+  const renderData = () => {
+    if (datas.loading) {
+      return (
+        <View style={styles.indicator}>
+          <ActivityIndicator />
+        </View>
+      );
+    } else if (datas.error) {
+      return (
+        <View style={styles.indicator}>
+          <Text>An error occured</Text>
+        </View>
+      );
+    }
+    return (
       <FlatList
-        data={datas}
-        keyExtractor={(item) => item.id}
+        data={datas.data}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={renderItem}
         numColumns={2}
         showsVerticalScrollIndicator={false}
@@ -59,45 +74,52 @@ const Categories = () => {
           </>
         }
       />
-    </View>
-  );
+    );
+  };
+
+  return <View style={styles.container}>{renderData()}</View>;
 };
 const styles = StyleSheet.create({
   container: {
-    width: wp("126.7%"),
-    height: hp("71.1%"),
-    gap: hp("1.2%"),
+    width: normalizew(494),
+    height: normalizeh(600),
+    gap: normalizeh(10),
   },
   renderContainer: {
-    width: wp("40.5%"),
-    height: hp("18%"),
+    width: normalizew(165),
+    height: normalizeh(155),
     justifyContent: "flex-end",
-    borderRadius: wp("3.1%"),
+    borderRadius: normalizew(11.5),
     overflow: "hidden",
     borderWidth: 0.5,
     borderColor: "#29BB892E",
-    marginVertical: hp("1%"),
-    marginHorizontal: hp("0.5%"),
+    marginVertical: normalizeh(8),
+    marginHorizontal: normalizeh(4),
   },
   image: {
     flex: 1,
-    marginHorizontal: wp("1.3%"),
+    marginHorizontal: normalizew(5),
     width: "100%",
     height: "100%",
   },
   text: {
-    fontSize: wp("4.1%"),
+    fontSize: normalizew(16),
     color: "#13231B",
-    width: wp("20.6%"),
+    width: normalizew(98),
     fontWeight: "500",
-    lineHeight: hp("2.5%"),
-    margin: 16,
+    lineHeight: normalizeh(21),
+    margin: normalizew(16),
+    letterSpacing: normalizew(-0.32),
   },
   flatList: {
-    marginLeft: wp("6.2%"),
+    marginLeft: normalizew(24),
   },
   buttonPressed: {
     opacity: 0.6,
+  },
+  indicator: {
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 export default Categories;

@@ -1,13 +1,14 @@
-import React from "react";
 import { View, StyleSheet } from "react-native";
-import { OnboardingType } from "../types";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import { normalizeh, normalizew } from "../utils/normalize";
+import { PaginatorProps } from "./types";
 
-interface PaginatorProps {
-  data: OnboardingType[];
-  activeIndex: number;
-}
+const Paginator = ({ data }: PaginatorProps) => {
+  const activeIndex = useSelector(
+    (state: RootState) => state.slicer.activeIndex
+  );
 
-const Paginator = ({ data, activeIndex }: PaginatorProps) => {
   return (
     <View style={styles.container}>
       {data.map((_, i: number) => (
@@ -30,17 +31,17 @@ const Paginator = ({ data, activeIndex }: PaginatorProps) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    height: 20,
+    height: normalizeh(20),
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 50,
+    marginBottom: normalizeh(50),
     top: 0,
   },
   dot: {
-    height: 8,
-    borderRadius: 6,
-    marginHorizontal: 5,
-    width: 8,
+    height: normalizeh(8),
+    borderRadius: normalizew(6),
+    marginHorizontal: normalizew(5),
+    width: normalizew(8),
   },
 });
 

@@ -1,18 +1,10 @@
-import React from "react";
 import { View, Image, Text, StyleSheet, Dimensions } from "react-native";
 import { FeatureType } from "../components/types";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
-
-const { width, height } = Dimensions.get("screen");
+import { normalizeh, normalizew } from "../utils/normalize";
 const Feature = ({ item }: { item: FeatureType }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image style={styles.image} source={item.image} />
-      </View>
+      <Image style={styles.image} source={item.image} />
       <Text style={styles.text}>{item.title}</Text>
       <Text style={styles.subText}>{item.subTitle}</Text>
     </View>
@@ -20,35 +12,32 @@ const Feature = ({ item }: { item: FeatureType }) => {
 };
 const styles = StyleSheet.create({
   container: {
-    width: wp("40.0%"),
-    height: hp("15.4%"),
+    width: normalizew(150),
+    height: normalizeh(117),
     backgroundColor: "#FFFFFF14",
-    borderRadius: wp("3.7%"),
-    marginLeft: wp("2.6%"),
-    paddingTop: hp("1.8%"),
-    paddingLeft: wp("2.6%"),
-  },
-  imageContainer: {
-    width: wp("11%"),
-    backgroundColor: "#1b2420",
-    padding: wp("2.1%"),
-    borderRadius: wp("2.6%"),
-    marginBottom: hp("1.4%"),
+    borderRadius: normalizew(14),
+    marginLeft: normalizew(10),
+    paddingTop: normalizeh(14),
+    paddingLeft: normalizew(14),
   },
   image: {
-    width: wp("6.2%"),
-    height: wp("6.2%"),
+    width: normalizew(36),
+    height: normalizeh(36),
+    backgroundColor: "#1b2420",
+    borderRadius: normalizew(10),
+    marginBottom: normalizeh(11),
   },
   text: {
     color: "#FFFFFF",
     fontWeight: "500",
-    fontSize: wp("5.3%"),
-    marginBottom: hp("0.7%"),
+    fontSize: normalizew(20),
+    marginBottom: normalizeh(3),
+    letterSpacing: 0.38,
   },
   subText: {
     color: "#FFFFFFB2",
     fontWeight: "400",
-    fontSize: wp("3.4%"),
+    fontSize: normalizew(13),
   },
 });
 export default Feature;

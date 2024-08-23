@@ -1,13 +1,16 @@
 import { StyleSheet, View, Text, Image, StatusBar } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import { normalizeh, normalizew } from "../utils/normalize";
+import { useDispatch, useSelector } from "react-redux";
+import { setGetStarted } from "../store/reducers/slices";
+import { RootState } from "../store/store";
 
-export default function GetStarted({ setValue }) {
+export default function GetStarted() {
+  const dispatch = useDispatch();
+  const getStarted = useSelector((state: RootState) => state.slicer.getStarted);
+
   const handlerPress = () => {
-    setValue((value: boolean) => !value);
+    dispatch(setGetStarted(!getStarted));
   };
 
   return (
@@ -22,11 +25,14 @@ export default function GetStarted({ setValue }) {
         </Text>
       </View>
       <Image source={require("../photos/homepage.png")} style={styles.image} />
-      <PrimaryButton onPress={handlerPress}>Get Started</PrimaryButton>
+      <View style={styles.buttonContainer}>
+        <PrimaryButton onPress={handlerPress}>Get Started</PrimaryButton>
+      </View>
       <View style={styles.terms}>
         <Text style={styles.termsText}>
-          By tapping next, you are agreeing to PlantID Terms of Use & Privacy
-          Policy.
+          By tapping next, you are agreeing to PlantID{" "}
+          <Text style={styles.underline}>Terms of Use</Text> &{" "}
+          <Text style={styles.underline}>Privacy Policy</Text>.
         </Text>
       </View>
     </View>
@@ -37,50 +43,49 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-    marginTop: hp("7%"),
+    marginTop: 75,
   },
   titleContainer: {
-    width: wp("80%"),
-    height: hp("10%"),
-    marginLeft: wp("6%"),
+    marginLeft: normalizew(24),
   },
   title: {
-    width: wp("76%"),
-    height: hp("4%"),
-    fontSize: wp("7%"),
+    fontSize: normalizew(28),
     color: "#13231B",
     fontWeight: "400",
-    lineHeight: hp("4%"),
+    lineHeight: normalizeh(33),
   },
   boldTitle: {
     fontWeight: "700",
   },
   subTitle: {
-    width: wp("60%"),
-    height: hp("5%"),
-    fontSize: wp("4%"),
-    paddingRight: wp("3%"),
+    width: normalizew(275),
+    fontSize: normalizew(16),
     color: "#13231BB2",
     fontWeight: "400",
-    lineHeight: hp("2.5%"),
+    lineHeight: normalizeh(22),
   },
   image: {
-    width: wp("100%"),
-    height: hp("61%"),
-    marginTop: hp("2%"),
-    resizeMode: "contain",
+    width: "100%",
+    height: normalizew(499),
+    marginTop: 20,
+  },
+  buttonContainer: {
+    justifyContent: "center",
+    alignItems: "center",
   },
   terms: {
-    width: wp("61%"),
-    height: hp("3.6%"),
-    marginLeft: wp("19%"),
-    marginTop: hp("2%"),
+    height: normalizeh(50),
+    marginTop: normalizeh(17),
     alignItems: "center",
   },
   termsText: {
     color: "#597165B2",
-    fontSize: wp("3%"),
+    fontSize: normalizew(11),
     textAlign: "center",
-    lineHeight: hp("1.8%"),
+    lineHeight: normalizeh(15),
+    width: normalizeh(232),
+  },
+  underline: {
+    textDecorationLine: "underline",
   },
 });

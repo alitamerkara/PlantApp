@@ -1,4 +1,4 @@
-import { Image, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomePage from "../pages/HompagesTabs/HomePage";
 import HomeIcon from "../../assets/Logos/Icon.svg";
@@ -16,12 +16,12 @@ const Tab = createBottomTabNavigator();
 export const AppStack = () => (
   <Tab.Navigator
     screenOptions={({ route }) => ({
-      tabBarLabelStyle: ({ focused }) => ({
-        color: focused ? "#28AF6E" : "#BDBDBD", // Tab etiketlerinin rengi
+      tabBarLabelStyle: ({ focused }: { focused: boolean }) => ({
+        color: focused ? "#28AF6E" : "#BDBDBD",
         fontWeight: "bold",
       }),
       tabBarIcon: ({ focused }) => {
-        const fill = focused ? "#28AF6E" : "#BDBDBD"; // Tab ikonlarının rengi
+        const fill = focused ? "#28AF6E" : "#BDBDBD";
         if (route.name === "HomePage") {
           return <HomeIcon fill={fill} />;
         } else if (route.name === "Diagnose") {

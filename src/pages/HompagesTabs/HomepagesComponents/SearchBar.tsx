@@ -7,6 +7,8 @@ import {
   Keyboard,
 } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import { normalizeh, normalizew } from "../../../utils/normalize";
+
 const SearchBar = () => {
   return (
     <View style={styles.container}>
@@ -36,45 +38,45 @@ const SearchBar = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: "100%",
+    width: normalizew(390),
   },
   image: {
     flex: 1,
     resizeMode: "center",
   },
   textContainer: {
-    marginTop: 50,
-    width: 225,
+    marginTop: normalizew(50),
+    width: normalizeh(225),
   },
   content: {
-    marginLeft: 30,
+    marginLeft: normalizew(30),
   },
   greeting: {
-    fontSize: 16,
+    fontSize: normalizew(16),
     fontWeight: "400",
-    height: 19,
+    height: normalizeh(19),
   },
   greeting2: {
-    fontSize: 24,
+    fontSize: normalizew(24),
     fontWeight: "500",
-    height: 28,
+    height: normalizew(28),
   },
   searchInput: {
-    marginTop: 10,
+    marginTop: normalizeh(10),
     alignItems: "center",
     flexDirection: "row",
-    height: 44,
-    width: 327,
+    height: normalizeh(44),
+    width: normalizew(327),
     backgroundColor: "white",
     borderRadius: 12,
     borderWidth: 0.2,
     borderColor: "#3C3C4340",
-    padding: 10,
+    padding: normalizew(10),
   },
   input: {
-    paddingLeft: 8,
-    fontSize: 15,
-    width: "90%",
+    paddingLeft: normalizew(8),
+    fontSize: normalizew(15),
+    width: normalizew(294),
   },
 });
 export default SearchBar;

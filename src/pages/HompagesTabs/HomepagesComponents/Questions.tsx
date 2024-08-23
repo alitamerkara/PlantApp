@@ -7,15 +7,19 @@ import {
   StyleSheet,
   Pressable,
 } from "react-native";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import { normalizeh, normalizew } from "../../../utils/normalize";
+import { QUESTION_DATA } from "../../../components/constants";
+import { DataType, QuestionType } from "../../../components/types";
 
-const renderItem = ({ item }) => {
+const renderItem = ({ item }: { item: QuestionType }) => {
   const image = { uri: item.image_uri };
   return (
-    <Pressable style={({ pressed }) => [pressed ? styles.buttonPressed : null]}>
+    <Pressable
+      style={({ pressed }) => [
+        styles.questionContainer,
+        pressed ? styles.buttonPressed : null,
+      ]}
+    >
       <ImageBackground source={image} style={styles.image}>
         <View style={styles.renderContainer}>
           <Text style={styles.text}>{item.title}</Text>
@@ -30,7 +34,7 @@ const Questions = () => {
 
   useLayoutEffect(() => {
     const fetchData = async () => {
-      await fetch("https://dummy-api-jtg6bessta-ey.a.run.app/getQuestions")
+      await fetch(QUESTION_DATA)
         .then((res) => res.json())
         .then((data) => setDatas(data))
         .catch((error) => console.log("Error fetching data", error));
@@ -52,37 +56,43 @@ const Questions = () => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
-    width: wp("100%"),
-    height: hp("24.6%"),
-    gap: hp("1.2%"),
-    marginBottom: hp("4%"),
+    width: normalizew(375),
+    height: normalizeh(200),
+    gap: normalizeh(10),
+    marginBottom: normalizeh(32.5),
+  },
+  questionContainer: {
+    width: normalizew(240),
+    height: normalizeh(164),
   },
   title: {
-    marginHorizontal: wp("1.6%"),
-    fontSize: wp("4%"),
+    marginHorizontal: normalizew(5),
+    fontSize: normalizew(15),
     fontWeight: "500",
   },
   renderContainer: {
-    width: wp("55%"),
-    height: hp("20.2%"),
+    width: normalizew(206),
+    height: normalizeh(164),
     justifyContent: "flex-end",
-    padding: wp("3.7%"),
+    paddingHorizontal: normalizew(10),
+    paddingVertical: normalizeh(20),
   },
   image: {
     flex: 1,
-    marginHorizontal: wp("1.3%"),
-    borderRadius: wp("3.2%"),
+    marginHorizontal: normalizew(5),
+    borderRadius: normalizew(12),
     overflow: "hidden",
   },
   text: {
-    fontSize: wp("4%"),
+    fontSize: normalizew(15),
     color: "#FFFFFF",
   },
   flatList: {
-    width: wp("98.7%"),
-    height: hp("24.6%"),
+    width: normalizew(370),
+    height: normalizeh(200),
   },
   buttonPressed: {
     opacity: 0.6,

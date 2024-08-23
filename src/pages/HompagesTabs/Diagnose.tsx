@@ -1,5 +1,5 @@
-import React from "react";
 import { Text, StyleSheet, View } from "react-native";
+import { normalizew } from "../../utils/normalize";
 
 const Diagnose = () => {
   return (
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   text: {
-    fontSize: 30,
+    fontSize: normalizew(30),
     fontWeight: "700",
     color: "#28AF6E",
   },

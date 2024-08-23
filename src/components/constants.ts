@@ -1,11 +1,11 @@
-import { FeatureType, OnboardingType } from "./types";
+import { OnboardingType, FeatureType, Offers } from "./types";
 
 const slides: OnboardingType[] = [
   {
     id: 1,
     image: require("../photos/onboarding1.png"),
-    title: "Take a photo to",
-    bold: "identify\n",
+    title: "Take a  photo to ",
+    bold: " identify\n",
     title2: "the plant",
   },
   {
@@ -19,7 +19,6 @@ const slides: OnboardingType[] = [
     image: require("../photos/paywall.png"),
   },
 ];
-
 const features: FeatureType[] = [
   {
     image: require("../photos/featureIcons/unlimited.png"),
@@ -37,7 +36,7 @@ const features: FeatureType[] = [
     subTitle: "Plant care",
   },
 ];
-const offers = [
+const offers: Offers[] = [
   {
     id: 1,
     title: "1 Month",
@@ -49,4 +48,11 @@ const offers = [
     subTitle: "First 3 days free, then $529,99/year",
   },
 ];
-export { slides, features, offers };
+
+const QUESTION_DATA: string =
+  "https://dummy-api-jtg6bessta-ey.a.run.app/getQuestions";
+
+const CATEGORIES_DATA: string =
+  "https://dummy-api-jtg6bessta-ey.a.run.app/getCategories";
+
+export { offers, features, slides, QUESTION_DATA, CATEGORIES_DATA };

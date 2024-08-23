@@ -1,11 +1,7 @@
-import React from "react";
-import { Text, View, StyleSheet, Pressable, ScrollView } from "react-native";
+import { View, StyleSheet } from "react-native";
 import SearchBar from "./HomepagesComponents/SearchBar";
 import Categories from "./HomepagesComponents/Categories";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import { normalizew, normalizeh } from "../../utils/normalize";
 
 const HomePage = () => {
   return (
@@ -22,8 +18,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   search: {
-    width: wp("100%"),
-    height: hp("21.5%"),
+    width: normalizew(390),
+    height: normalizeh(175),
   },
 });
 export default HomePage;
